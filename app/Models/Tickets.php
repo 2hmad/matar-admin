@@ -11,6 +11,7 @@ class Tickets extends Model
     public $table = "support_tickets";
     protected $fillable = [
         'user_id',
+        'email',
         'subject',
         'content',
         'date',

@@ -15,7 +15,8 @@ class CreateSupportTicketsTable extends Migration
     {
         Schema::create('support_tickets', function (Blueprint $table) {
             $table->id();
-            $table->text('user_id');
+            $table->text('user_id')->nullable();
+            $table->text('email')->nullable();
             $table->text('subject');
             $table->text('content');
             $table->date('date')->nullable();

@@ -36,6 +36,18 @@
                     <span class="text-nowrap">{{ props.row.fullName }}</span>
                 </span>
 
+                <span
+                    v-else-if="props.column.field === 'user.email'"
+                    class="text-nowrap"
+                >
+                    <span class="text-nowrap" v-if="props.row.user == null">
+                        {{ props.row.email }}
+                    </span>
+                    <span class="text-nowrap" v-else>
+                        {{ props.row.user.email }}
+                    </span>
+                </span>
+
                 <span v-else-if="props.column.field === 'action'">
                     <span>
                         <router-link :to="`/ticket/${props.row.id}`">
