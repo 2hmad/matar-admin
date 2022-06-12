@@ -31,7 +31,8 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'country' => $request->country,
-                'token' => md5(time())
+                'token' => md5(time()),
+                'date' => date('Y-m-d')
             ]);
         } else {
             return response()->json(['alert' => 'البريد الالكتروني مسجل من قبل'], 404);
@@ -56,7 +57,8 @@ class AuthController extends Controller
                     'email' => $request->email,
                     'google_token' => $request->google_token,
                     'password' => Hash::make($request->google_token),
-                    'token' => md5(time())
+                    'token' => md5(time()),
+                    'date' => date('Y-m-d')
                 ]);
                 return Users::where('google_token', $request->google_token)->first();
             }
@@ -77,7 +79,8 @@ class AuthController extends Controller
                     'email' => $request->email,
                     'facebook_token' => $request->facebook_token,
                     'password' => Hash::make($request->facebook_token),
-                    'token' => md5(time())
+                    'token' => md5(time()),
+                    'date' => date('Y-m-d')
                 ]);
                 return Users::where('facebook_token', $request->facebook_token)->first();
             }

@@ -196,6 +196,11 @@ export default {
                     sortable: false,
                 },
                 {
+                    label: "تاريخ التسجيل",
+                    field: "date",
+                    sortable: false,
+                },
+                {
                     label: "الاعدادات",
                     field: "action",
                     sortable: false,

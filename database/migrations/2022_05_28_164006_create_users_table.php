@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('google_token')->nullable();
             $table->text('token');
             $table->text('pic')->nullable();
+            $table->text('date')->nullable();
         });
     }
 
