@@ -346,7 +346,7 @@ export default {
             let coupons = await axios.get("/api/coupons");
             this.rows = coupons.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {

@@ -334,13 +334,13 @@ export default {
             let response = await axios.get("/api/countries");
             this.countries = response.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
         try {
             let response = await axios.get("/api/all-notifications");
             this.rows = response.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -370,7 +370,7 @@ export default {
                     alert("تم ارسال الاشعار"), location.reload();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
         deleteNotify(id) {
@@ -394,7 +394,7 @@ export default {
                         alert("تم حذف الاشعار"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },

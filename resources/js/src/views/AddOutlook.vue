@@ -150,7 +150,7 @@ export default {
             let response = await axios.get("/api/countries");
             this.countries = response.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -186,7 +186,7 @@ export default {
                     alert("تم اضافة التوقع"), (location.href = "/outlooks");
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
     },

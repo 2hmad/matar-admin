@@ -135,7 +135,7 @@ export default {
             let countries = await axios.get("/api/countries");
             this.countries = countries.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -158,7 +158,7 @@ export default {
                     alert("تم اضافة الدولة"), location.reload();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
         deleteCountry(id) {
@@ -180,7 +180,7 @@ export default {
                         alert("تم حذف الدولة"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },
@@ -203,7 +203,7 @@ export default {
                         alert("تم تعديل صور الاقمار الصناعية");
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },
@@ -226,7 +226,7 @@ export default {
                         alert("تم تعديل وضع نظام التسويق"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },

@@ -304,7 +304,7 @@ export default {
     async mounted() {
         try {
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -322,7 +322,7 @@ export default {
                         this.$router.push("/login");
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
         updatePassword() {

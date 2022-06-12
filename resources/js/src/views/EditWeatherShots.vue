@@ -130,7 +130,7 @@ export default {
             this.form.publishDate = response.data.schedule;
             this.form.hideDate = response.data.hide;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -146,7 +146,7 @@ export default {
                     alert("تم تعديل التوقع"), location.reload();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
     },

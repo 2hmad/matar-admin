@@ -281,7 +281,7 @@ export default {
             let ads = await axios.get("/api/ads");
             this.ads = ads.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -308,7 +308,7 @@ export default {
                     alert("تم اضافة الاعلان"), location.reload();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
         deleteAd(id) {
@@ -332,7 +332,7 @@ export default {
                         alert("تم حذف الاعلان"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },

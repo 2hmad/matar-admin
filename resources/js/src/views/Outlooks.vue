@@ -247,7 +247,7 @@ export default {
             let response = await axios.get("/api/outlooks");
             this.rows = response.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -272,7 +272,7 @@ export default {
                         alert("تم حذف التوقع"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },

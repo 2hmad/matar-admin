@@ -187,7 +187,7 @@ export default {
             this.form.tiktok_acc = response.data.tiktok_acc;
             this.form.snapchat_acc = response.data.snapchat_acc;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -203,7 +203,7 @@ export default {
                     alert("تم تعديل بيانات المسوق"), location.reload();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
     },

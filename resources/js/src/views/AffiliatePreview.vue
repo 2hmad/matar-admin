@@ -595,7 +595,7 @@ export default {
             );
             this.marketer_withdraw = payout_methods.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -619,7 +619,7 @@ export default {
                             location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },

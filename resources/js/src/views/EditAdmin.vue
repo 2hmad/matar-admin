@@ -114,7 +114,7 @@ export default {
             this.form.email = response.data.email;
             this.form.role = response.data.role;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {

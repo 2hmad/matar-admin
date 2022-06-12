@@ -92,7 +92,7 @@ export default {
             let response = await axios.get("/api/comments");
             this.comments = response.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -116,7 +116,7 @@ export default {
                     alert("تم اضافة الرد علي التعليق"), location.reload();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
     },

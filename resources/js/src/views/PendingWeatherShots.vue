@@ -229,7 +229,7 @@ export default {
             let response = await axios.get("/api/pending-shots");
             this.rows = response.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {

@@ -55,7 +55,7 @@ export default {
             );
             this.ticket = response.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
 };

@@ -771,7 +771,7 @@ export default {
             );
             this.rows = response.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -787,7 +787,7 @@ export default {
                     alert("تم اضافة المسوق"), location.reload();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
         deleteAcc(id) {
@@ -811,7 +811,7 @@ export default {
                         alert("تم حذف حساب المسوق"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },
@@ -836,7 +836,7 @@ export default {
                         alert("تم تعطيل حساب المسوق"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },
@@ -861,7 +861,7 @@ export default {
                         alert("تم تشغيل حساب المسوق"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },
@@ -886,7 +886,7 @@ export default {
                         alert("تم تشغيل حساب المسوق"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },
@@ -911,7 +911,7 @@ export default {
                         alert("تم حظر حساب المسوق"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },
@@ -936,7 +936,7 @@ export default {
                         alert("تم رفع حظر حساب المسوق"), location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },

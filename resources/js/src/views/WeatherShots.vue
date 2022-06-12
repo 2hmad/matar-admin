@@ -345,7 +345,7 @@ export default {
             let response = await axios.get("/api/weatherShots");
             this.rows = response.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -374,7 +374,7 @@ export default {
                             location.reload();
                     })
                     .catch((err) => {
-                        console.log(err);
+                        alert("حدث خطأ ما");
                     });
             }
         },
@@ -401,7 +401,7 @@ export default {
                     alert("تم اضافة صورة / مقطع الطقس"), location.reload();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
         share(id) {

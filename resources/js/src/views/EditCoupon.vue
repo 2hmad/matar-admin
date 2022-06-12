@@ -100,7 +100,7 @@ export default {
             let countries = await axios.get("/api/countries");
             this.countries = countries.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
     methods: {
@@ -116,7 +116,7 @@ export default {
                     alert("تم تعديل الكوبون"), location.reload();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alert("حدث خطأ ما");
                 });
         },
     },

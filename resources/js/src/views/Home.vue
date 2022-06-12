@@ -214,7 +214,7 @@ export default {
             let likedPosts = await axios.get("/api/most-likes-posts");
             this.rows = likedPosts.data;
         } catch (err) {
-            console.log(err);
+            alert("حدث خطأ ما");
         }
     },
 };
