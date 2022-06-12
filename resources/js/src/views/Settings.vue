@@ -200,8 +200,7 @@ export default {
                         }
                     )
                     .then((result) => {
-                        alert("تم تعديل صور الاقمار الصناعية"),
-                            location.reload();
+                        alert("تم تعديل صور الاقمار الصناعية");
                     })
                     .catch((err) => {
                         console.log(err);

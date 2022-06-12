@@ -327,7 +327,7 @@
                         <b-form-input
                             id="v-register-commission"
                             type="number"
-                            step="0.001"
+                            step="0.00000001"
                             placeholder="$"
                             required
                             v-model="form.reg_commission"
@@ -340,7 +340,7 @@
                         <b-form-input
                             id="v-subscribe-commission"
                             type="number"
-                            step="0.001"
+                            step="0.00000001"
                             placeholder="$"
                             required
                             v-model="form.sub_commission"
@@ -388,16 +388,23 @@
                         <div class="col-lg">
                             <b-form-group
                                 label="حساب تيك توك"
-                                label-for="v-ticktok"
+                                label-for="v-tiktok"
                             >
                                 <b-form-input
-                                    id="v-ticktok"
+                                    id="v-tiktok"
                                     placeholder="حساب تيك توك"
                                     v-model="form.tiktok_acc"
                                 />
                             </b-form-group>
                         </div>
                     </div>
+                    <b-form-group label="حساب سناب شات" label-for="v-snapchat">
+                        <b-form-input
+                            id="v-snapchat"
+                            placeholder="حساب سناب شات"
+                            v-model="form.snapchat_acc"
+                        />
+                    </b-form-group>
                     <b-button type="submit" variant="primary" class="w-100">
                         اضافة
                     </b-button>
@@ -746,6 +753,7 @@ export default {
                 twitter_acc: "",
                 instagram_acc: "",
                 tiktok_acc: "",
+                snapchat_acc: "",
             },
         };
     },

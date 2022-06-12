@@ -69,4 +69,23 @@ class AuthController extends Controller
     {
         return Admins::where('id', $request->id)->delete();
     }
+    public function updateProfile(Request $request)
+    {
+        Admins::where('token', $request->header('token'))->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'country' => $request->country,
+        ]);
+    }
+    public function updatePassword(Request $request)
+    {
+        $compare = Admins::where('token', $request->header('token'))->first();
+        if (Hash::check($request->current_password, $compare->password)) {
+            Admins::where('token', $request->header('token'))->update([
+                'password' => Hash::make($request->new_password),
+            ]);
+        } else {
+            return response()->json(['alert' => 'كلمة المرور الحالية غير صحيحة'], 404);
+        }
+    }
 }

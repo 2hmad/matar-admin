@@ -38,9 +38,6 @@ class OutlooksController extends Controller
             'files.*' => 'required|mimes:jpeg,png,jpg,mp4,flv,3gp,mov,avi,wmv'
         ]);
         if ($validate) {
-            if (!File::exists(public_path() . '/storage/outlooks')) {
-                File::makeDirectory(public_path() . '/storage/outlooks');
-            }
             $dataDecode = json_decode($request->data, true);
             Outlook::create([
                 'title' => $dataDecode['title'],

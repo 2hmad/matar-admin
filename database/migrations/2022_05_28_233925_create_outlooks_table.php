@@ -17,10 +17,10 @@ class CreateOutlooksTable extends Migration
             $table->id();
             $table->text('title')->nullable();
             $table->timestamp('date');
-            $table->text('country');
+            $table->text('country')->nullable();
             $table->longText('details')->nullable();
-            $table->timestamp('schedule')->nullable();
-            $table->timestamp('hide')->nullable();
+            $table->text('schedule')->nullable();
+            $table->text('hide')->nullable();
             $table->unsignedInteger('likes')->nullable();
             $table->unsignedInteger('shares')->nullable();
         });

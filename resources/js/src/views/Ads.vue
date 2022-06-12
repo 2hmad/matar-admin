@@ -37,9 +37,25 @@
             </b-form-group>
             <b-form-group label="الدولة" label-for="v-country">
                 <b-form-select id="v-country" v-model="form.country">
-                    <option v-for="country in countries" :key="country.id">
-                        {{ country.country }}
-                    </option>
+                    <option>عمان</option>
+                    <option>الأمارات</option>
+                    <option>السعودية</option>
+                    <option>قطر</option>
+                    <option>البحرين</option>
+                    <option>الكويت</option>
+                    <option>اليمن</option>
+                    <option>العراق</option>
+                    <option>الاردن</option>
+                    <option>لبنان</option>
+                    <option>سوريا</option>
+                    <option>فلسطين</option>
+                    <option>تونس</option>
+                    <option>ليبيا</option>
+                    <option>مصر</option>
+                    <option>السودان</option>
+                    <option>المغرب</option>
+                    <option>الجزائر</option>
+                    <option>موريتانيا</option>
                 </b-form-select>
             </b-form-group>
             <b-form-group label="صورة / فيديو" label-for="v-pic">
@@ -83,6 +99,40 @@
                             hide-footer
                         >
                             <b-card-text>
+                                <div style="line-height: 2.9rem">
+                                    <div>
+                                        <span style="font-weight: bold">
+                                            تاريخ الاختفاء :
+                                        </span>
+                                        <span>{{ ad.hide }}</span>
+                                    </div>
+                                    <div>
+                                        <span style="font-weight: bold">
+                                            مكان النشر :
+                                        </span>
+                                        <span v-if="ad.location == '1'">
+                                            قسم التوقعات
+                                        </span>
+                                        <span v-if="ad.location == '2'">
+                                            قسم وسائط الطقس
+                                        </span>
+                                        <span v-if="ad.location == '0'">
+                                            كلا القسمين
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span style="font-weight: bold">
+                                            الدولة :
+                                        </span>
+                                        <span>{{ ad.country }}</span>
+                                    </div>
+                                    <div>
+                                        <span style="font-weight: bold">
+                                            رابط التحويل :
+                                        </span>
+                                        <span>{{ ad.redirect }}</span>
+                                    </div>
+                                </div>
                                 <div style="line-height: 2.9rem">
                                     <div style="text-align: center">
                                         <span style="font-weight: bold">

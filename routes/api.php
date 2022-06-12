@@ -42,6 +42,9 @@ Route::post('admin/login', [AdminAuthController::class, 'login']);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
 
+    Route::post('users', [AuthController::class, 'getAll']);
+    Route::post('delete-user', [AuthController::class, 'deleteUser']);
+
     Route::post('add-outlook', [OutlooksController::class, 'add']);
     Route::post('edit-outlook', [OutlooksController::class, 'edit']);
     Route::post('delete-outlook', [OutlooksController::class, 'delete']);
@@ -75,7 +78,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
     Route::post('enable-marketer', [MarketersController::class, 'enable']);
     Route::post('block-marketer', [MarketersController::class, 'block']);
     Route::post('unblock-marketer', [MarketersController::class, 'unblock']);
-    Route::post('withdraw-marketer', [MarketersController::class, 'withdraw']);
+    Route::post('withdraw-marketer', [MarketersController::class, 'withdraw_methods']);
 
     Route::post('tickets', [SupportTicketsController::class, 'get']);
     Route::post('close-ticket', [SupportTicketsController::class, 'close']);
@@ -92,6 +95,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
     Route::post('block-admin', [AdminAuthController::class, 'block']);
     Route::post('unblock-admin', [AdminAuthController::class, 'unblock']);
     Route::post('delete-admin', [AdminAuthController::class, 'delete']);
+
+    Route::post('update-profile', [AdminAuthController::class, 'updateProfile']);
+    Route::post('update-password', [AdminAuthController::class, 'updatePassword']);
 
     Route::post('system-settings/satellite', [SystemSettingsController::class, 'satellite']);
     Route::post('system-settings/affiliate', [SystemSettingsController::class, 'affiliate']);

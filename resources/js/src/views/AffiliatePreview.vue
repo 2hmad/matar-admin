@@ -79,6 +79,14 @@
                                 src="https://img.icons8.com/color/35/000000/tiktok--v1.png"
                             />
                         </a>
+                        <a
+                            :href="marketer_data.snapchat_acc"
+                            v-if="marketer_data.snapchat_acc !== null"
+                        >
+                            <img
+                                src="https://img.icons8.com/color/35/000000/snapchat--v1.png"
+                            />
+                        </a>
                     </div>
                 </div>
             </b-card-text>
@@ -103,10 +111,118 @@
                         <b-button
                             variant="success"
                             style="margin-right: auto; display: block"
-                            @click="withdraw(marketer_data.id)"
+                            v-b-modal="`modal-withdraw`"
                         >
                             سحب
                         </b-button>
+                        <b-modal
+                            :id="`modal-withdraw`"
+                            centered
+                            title="طرق سحب ايرادات المسوق"
+                            hide-footer
+                        >
+                            <b-card-text>
+                                <p>
+                                    طريقة السحب المختارة :
+                                    <span
+                                        v-if="
+                                            marketer_withdraw.method == 'paypal'
+                                        "
+                                    >
+                                        باي بال
+                                    </span>
+                                    <span
+                                        v-if="
+                                            marketer_withdraw.method ==
+                                            'bank-transfer'
+                                        "
+                                    >
+                                        تحويل بنكي
+                                    </span>
+                                    <span
+                                        v-if="
+                                            marketer_withdraw.method ==
+                                            'western-union'
+                                        "
+                                    >
+                                        ويسترن يونيون
+                                    </span>
+                                </p>
+                                <p>بيانات السحب :</p>
+                                <ul>
+                                    <li
+                                        v-if="
+                                            marketer_withdraw.method == 'paypal'
+                                        "
+                                    >
+                                        حساب بايبال :
+                                        {{ marketer_withdraw.paypal_account }}
+                                    </li>
+                                    <li
+                                        v-if="
+                                            marketer_withdraw.method ==
+                                            'bank-transfer'
+                                        "
+                                    >
+                                        اسم البنك :
+                                        {{ marketer_withdraw.bank_name }}
+                                    </li>
+                                    <li
+                                        v-if="
+                                            marketer_withdraw.method ==
+                                            'bank-transfer'
+                                        "
+                                    >
+                                        اسم مالك حساب البنك :
+                                        {{ marketer_withdraw.bank_account }}
+                                    </li>
+                                    <li
+                                        v-if="
+                                            marketer_withdraw.method ==
+                                            'bank-transfer'
+                                        "
+                                    >
+                                        رقم حساب البنك :
+                                        {{
+                                            marketer_withdraw.bank_account_number
+                                        }}
+                                    </li>
+                                    <li
+                                        v-if="
+                                            marketer_withdraw.method ==
+                                            'bank-transfer'
+                                        "
+                                    >
+                                        رمز سويفت للبنك :
+                                        {{ marketer_withdraw.bank_swift }}
+                                    </li>
+                                    <li
+                                        v-if="
+                                            marketer_withdraw.method ==
+                                            'western-union'
+                                        "
+                                    >
+                                        الاسم بالكامل :
+                                        {{ marketer_withdraw.full_name }}
+                                    </li>
+                                    <li
+                                        v-if="
+                                            marketer_withdraw.method ==
+                                            'western-union'
+                                        "
+                                    >
+                                        رقم الهوية :
+                                        {{ marketer_withdraw.id_number }}
+                                    </li>
+                                </ul>
+                                <b-button
+                                    variant="success"
+                                    @click="withdraw(marketer_data.id)"
+                                >
+                                    سحب
+                                </b-button>
+                            </b-card-text>
+                        </b-modal>
                     </div>
                 </div>
             </div>
@@ -441,6 +557,7 @@ export default {
             marketer_funds: [],
             marketer_reg: [],
             marketer_sub: [],
+            marketer_withdraw: [],
         };
     },
     async mounted() {
@@ -465,6 +582,18 @@ export default {
             );
             this.paymentsRows = marketer.data.details;
             this.usersRows = marketer.data.details;
+
+            let payout_methods = await axios.post(
+                `/api/admin/withdraw-marketer`,
+                { id: this.$route.params.id },
+                {
+                    headers: {
+                        token: JSON.parse(localStorage.getItem("MatarAdmin"))
+                            .token,
+                    },
+                }
+            );
+            this.marketer_withdraw = payout_methods.data;
         } catch (err) {
             console.log(err);
         }

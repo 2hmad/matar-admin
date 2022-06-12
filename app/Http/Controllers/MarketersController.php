@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MarketerDetails;
 use App\Models\Marketers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -35,6 +36,7 @@ class MarketersController extends Controller
             'twitter_acc' => $request->twitter_acc,
             'instagram_acc' => $request->instagram_acc,
             'tiktok_acc' => $request->tiktok_acc,
+            "snapchat_acc" => $request->snapchat_acc,
             'token' => md5(time()),
             'ban' => 0,
             'active' => 1
@@ -52,6 +54,7 @@ class MarketersController extends Controller
             'twitter_acc' => $request->twitter_acc,
             'instagram_acc' => $request->instagram_acc,
             'tiktok_acc' => $request->tiktok_acc,
+            "snapchat_acc" => $request->snapchat_acc
         ]);
     }
     public function delete(Request $request)
@@ -81,6 +84,10 @@ class MarketersController extends Controller
         Marketers::where('id', $request->id)->update([
             'ban' => 0
         ]);
+    }
+    public function withdraw_methods(Request $request)
+    {
+        return DB::table('payout_settings')->where('marketer_id', $request->id)->first();
     }
     public function withdraw(Request $request)
     {

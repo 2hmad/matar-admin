@@ -19,17 +19,28 @@
                             v-model="form.coupon"
                         />
                     </b-form-group>
-                    <b-form-group
-                        label="الدولة (اتركها فارغه اذا للعامة)"
-                        label-for="v-country"
-                    >
+                    <b-form-group label="الدولة" label-for="v-country">
                         <b-form-select id="v-country" v-model="form.country">
-                            <option
-                                v-for="country in countries"
-                                :key="country.id"
-                            >
-                                {{ country.country }}
-                            </option>
+                            <option value="">العامة</option>
+                            <option>عمان</option>
+                            <option>الأمارات</option>
+                            <option>السعودية</option>
+                            <option>قطر</option>
+                            <option>البحرين</option>
+                            <option>الكويت</option>
+                            <option>اليمن</option>
+                            <option>العراق</option>
+                            <option>الاردن</option>
+                            <option>لبنان</option>
+                            <option>سوريا</option>
+                            <option>فلسطين</option>
+                            <option>تونس</option>
+                            <option>ليبيا</option>
+                            <option>مصر</option>
+                            <option>السودان</option>
+                            <option>المغرب</option>
+                            <option>الجزائر</option>
+                            <option>موريتانيا</option>
                         </b-form-select>
                     </b-form-group>
                     <b-form-group

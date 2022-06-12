@@ -83,4 +83,12 @@ class AuthController extends Controller
             }
         }
     }
+    public function getAll(Request $request)
+    {
+        return Users::orderBy('id', 'DESC')->get();
+    }
+    public function deleteUser(Request $request)
+    {
+        return Users::where('id', $request->id)->delete();
+    }
 }

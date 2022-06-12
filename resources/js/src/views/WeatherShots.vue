@@ -307,6 +307,11 @@ export default {
                     sortable: false,
                 },
                 {
+                    label: "تاريخ الاختفاء",
+                    field: "hide",
+                    sortable: false,
+                },
+                {
                     label: "عدد المشاركات",
                     field: "shares",
                 },

@@ -29,6 +29,7 @@ class CreateMarketersTable extends Migration
             $table->text('twitter_acc')->nullable();
             $table->text('instagram_acc')->nullable();
             $table->text('tiktok_acc')->nullable();
+            $table->text('snapchat_acc')->nullable();
             $table->text('token');
             $table->text('pic')->nullable();
             $table->unsignedInteger('ban')->nullable();

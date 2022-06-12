@@ -23,6 +23,7 @@ class Marketers extends Model
         'twitter_acc',
         'instagram_acc',
         'tiktok_acc',
+        'snapchat_acc',
         'token',
         'pic',
         'ban',

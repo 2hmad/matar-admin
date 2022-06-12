@@ -49,9 +49,14 @@ export default [
                 icon: "CreditCardIcon",
             },
             {
-                title: "ادارة المستخدمين",
+                title: "ادارة المشرفين",
                 route: "admins",
                 icon: "KeyIcon",
+            },
+            {
+                title: "المستخدمين",
+                route: "users",
+                icon: "UsersIcon",
             },
             {
                 title: "اعدادات النظام",

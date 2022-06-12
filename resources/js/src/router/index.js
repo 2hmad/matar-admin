@@ -333,6 +333,22 @@ const router = new VueRouter({
             },
         },
         {
+            path: "/users",
+            name: "users",
+            component: () => import("@/views/Users.vue"),
+            meta: {
+                pageTitle: "المستخدمين",
+                requiresAuth: true,
+                requireAdmin: true,
+                breadcrumb: [
+                    {
+                        text: "المستخدمين",
+                        active: true,
+                    },
+                ],
+            },
+        },
+        {
             path: "/settings",
             name: "settings",
             component: () => import("@/views/Settings.vue"),
@@ -343,6 +359,22 @@ const router = new VueRouter({
                 breadcrumb: [
                     {
                         text: "اعدادات النظام",
+                        active: true,
+                    },
+                ],
+            },
+        },
+        {
+            path: "/profile",
+            name: "profile",
+            component: () => import("@/views/Profile.vue"),
+            meta: {
+                pageTitle: "الملف الشخصي",
+                requiresAuth: true,
+                requireAdmin: true,
+                breadcrumb: [
+                    {
+                        text: "الملف الشخصي",
                         active: true,
                     },
                 ],

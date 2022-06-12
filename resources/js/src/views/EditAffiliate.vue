@@ -35,7 +35,7 @@
                         <b-form-input
                             id="v-register-commission"
                             type="number"
-                            step="0.001"
+                            step="0.00000001"
                             placeholder="$"
                             required
                             v-model="form.reg_commission"
@@ -50,7 +50,7 @@
                         <b-form-input
                             id="v-subscribe-commission"
                             type="number"
-                            step="0.001"
+                            step="0.00000001"
                             placeholder="$"
                             required
                             v-model="form.sub_commission"
@@ -97,6 +97,17 @@
                         <b-form-input
                             id="v-tiktok_acc"
                             v-model="form.tiktok_acc"
+                        />
+                    </b-form-group>
+                </b-col>
+                <b-col cols="12">
+                    <b-form-group
+                        label="حساب سناب شات"
+                        label-for="v-snapchat_acc"
+                    >
+                        <b-form-input
+                            id="v-snapchat_acc"
+                            v-model="form.snapchat_acc"
                         />
                     </b-form-group>
                 </b-col>
@@ -149,6 +160,7 @@ export default {
                 twitter_acc: "",
                 instagram_acc: "",
                 tiktok_acc: "",
+                snapchat_acc: "",
             },
         };
     },
@@ -173,6 +185,7 @@ export default {
             this.form.twitter_acc = response.data.twitter_acc;
             this.form.instagram_acc = response.data.instagram_acc;
             this.form.tiktok_acc = response.data.tiktok_acc;
+            this.form.snapchat_acc = response.data.snapchat_acc;
         } catch (err) {
             console.log(err);
         }

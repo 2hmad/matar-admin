@@ -21,6 +21,8 @@ class CreatePayoutSettingsTable extends Migration
             $table->text('bank_name')->nullable();
             $table->text('bank_account')->nullable();
             $table->text('bank_account_number')->nullable();
+            $table->text('bank_swift')->nullable();
+            $table->text('full_name')->nullable();
             $table->text('id_number')->nullable();
         });
     }

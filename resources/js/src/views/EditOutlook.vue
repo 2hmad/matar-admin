@@ -183,7 +183,7 @@ export default {
                     config
                 )
                 .then((result) => {
-                    alert("تم تعديل التوقع"), location.reload();
+                    alert("تم تعديل التوقع"), (location.href = "/outlooks");
                 })
                 .catch((err) => {
                     console.log(err);

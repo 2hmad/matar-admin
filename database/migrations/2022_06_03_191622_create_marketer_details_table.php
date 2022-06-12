@@ -21,7 +21,7 @@ class CreateMarketerDetailsTable extends Migration
             $table->text('email');
             $table->text('country');
             $table->text('type');
-            $table->unsignedFloat('amount');
+            $table->float('amount');
             $table->date('date');
         });
     }
