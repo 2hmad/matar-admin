@@ -24,10 +24,9 @@ class SupportTicketsController extends Controller
     }
     public function add(Request $request)
     {
-        $user = Users::where('token', $request->header('Authorization'))->first();
         Tickets::create([
-            'user_id' => $user->id,
-            'subject' => $request->email,
+            'email' => $request->email,
+            'subject' => '',
             'content' => $request->content,
             'date' => date('Y-m-d'),
             'active' => 1
