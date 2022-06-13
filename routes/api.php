@@ -9,6 +9,7 @@ use App\Http\Controllers\MarketersController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\OutlooksController;
 use App\Http\Controllers\PendingShotsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionsController;
 use App\Http\Controllers\SupportTicketsController;
 use App\Http\Controllers\SystemSettingsController;
@@ -17,7 +18,6 @@ use App\Models\Outlook;
 use App\Models\Subscriptions;
 use App\Models\Users;
 use App\Models\WeatherShots;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +39,9 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::post('admin/login', [AdminAuthController::class, 'login']);
+
+Route::get('test', function () {
+});
 
 Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
 
@@ -130,6 +133,10 @@ Route::get('coupon/{id}', [CouponsController::class, 'getByID']);
 Route::get('ads', [AdsController::class, 'get']);
 Route::post('increase-views', [AdsController::class, 'views']);
 Route::post('increase-clicks', [AdsController::class, 'clicks']);
+
+Route::post('update-profile', [ProfileController::class, 'update'])->middleware('userToken');
+Route::post('shared-posts', [ProfileController::class, 'shared_posts'])->middleware('userToken');
+Route::post('reset-password', [ProfileController::class, 'reset_password']);
 
 Route::get('usersCount', function () {
     return Users::count();
