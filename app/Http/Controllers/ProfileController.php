@@ -85,13 +85,46 @@ class ProfileController extends Controller
                 ]);
             }
         } else {
-            return response()->json(['alert' => 'المستخدم غير موجود']);
+            return response()->json(['alert' => 'المستخدم غير موجود'], 404);
+        }
+    }
+    public function check_reset_password_code(Request $request)
+    {
+        if ($request->code) {
+            $check = ChangePassword::where('code', $request->code)->where('user', $request->email)->first();
+            if ($check !== null) {
+                return response()->json([], 200);
+            } else {
+                return response()->json(['alert' => 'الكود غير صحيح'], 404);
+            }
+        } else {
+            return response()->json(['alert' => 'الكود غير صحيح'], 404);
         }
     }
     public function reset_password(Request $request)
     {
         if ($request->code) {
-            $check = ChangePassword::where('user', $request->email)->first();
+            $check = ChangePassword::where('code', $request->code)->where('user', $request->email)->first();
+            if ($check !== null) {
+                Users::where('email', $request->email)->update([
+                    'password' => Hash::make($request->password)
+                ]);
+                return ChangePassword::where('code', $request->code)->where('user', $request->email)->delete();
+            } else {
+                return response()->json(['alert' => 'الكود غير صحيح'], 404);
+            }
+        } else if ($request->token) {
+            $check = ChangePassword::where('token', $request->token)->where('user', $request->email)->first();
+            if ($check !== null) {
+                Users::where('email', $request->email)->update([
+                    'password' => Hash::make($request->password)
+                ]);
+                return ChangePassword::where('token', $request->code)->where('user', $request->email)->delete();
+            } else {
+                return response()->json(['alert' => 'الكود غير صحيح'], 404);
+            }
+        } else {
+            return response()->json(['alert' => 'الكود غير صحيح'], 404);
         }
     }
 }

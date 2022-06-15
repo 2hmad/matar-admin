@@ -137,6 +137,7 @@ Route::post('increase-clicks', [AdsController::class, 'clicks']);
 Route::post('update-profile', [ProfileController::class, 'update'])->middleware('userToken');
 Route::post('shared-posts', [ProfileController::class, 'shared_posts'])->middleware('userToken');
 Route::post('send-reset-password', [ProfileController::class, 'send_reset_password']);
+Route::post('check-reset-code', [ProfileController::class, 'check_reset_password_code']);
 Route::post('reset-password', [ProfileController::class, 'reset_password']);
 
 Route::get('usersCount', function () {
