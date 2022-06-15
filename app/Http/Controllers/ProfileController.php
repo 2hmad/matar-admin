@@ -8,6 +8,7 @@ use App\Models\Users;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
@@ -63,7 +64,7 @@ class ProfileController extends Controller
     {
         return Comments::orderBy('id', 'DESC')->with('outlook')->get();
     }
-    public function reset_password(Request $request)
+    public function send_reset_password(Request $request)
     {
         $checkUser = Users::where('email', $request->email)->first();
         if ($checkUser !== null) {
@@ -72,17 +73,25 @@ class ProfileController extends Controller
                 ChangePassword::create([
                     'user' => $request->email,
                     'token' => md5(time()),
+                    'code' => Str::random(5),
                     'expire_time' => Carbon::parse(date('Y-m-d H:i'))->addMinutes(15)->format('Y-m-d H:i'),
                 ]);
             } else {
                 ChangePassword::where('user', $request->email)->update([
                     'user' => $request->email,
                     'token' => md5(time()),
+                    'code' => Str::random(5),
                     'expire_time' => Carbon::parse(date('Y-m-d H:i'))->addMinutes(15)->format('Y-m-d H:i'),
                 ]);
             }
         } else {
             return response()->json(['alert' => 'المستخدم غير موجود']);
+        }
+    }
+    public function reset_password(Request $request)
+    {
+        if ($request->code) {
+            $check = ChangePassword::where('user', $request->email)->first();
         }
     }
 }

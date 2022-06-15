@@ -18,6 +18,7 @@ class CreateChangePasswordTable extends Migration
             $table->text('user')->nullable();
             $table->text('marketer')->nullable();
             $table->text('token');
+            $table->text('code');
             $table->timestamp('expire_time');
         });
     }
