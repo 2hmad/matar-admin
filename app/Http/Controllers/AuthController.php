@@ -32,7 +32,8 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'country' => $request->country,
                 'token' => md5(time()),
-                'date' => date('Y-m-d')
+                'date' => date('Y-m-d'),
+                'ban' => 0
             ]);
         } else {
             return response()->json(['alert' => 'البريد الالكتروني مسجل من قبل'], 404);
@@ -58,7 +59,8 @@ class AuthController extends Controller
                     'google_token' => $request->google_token,
                     'password' => Hash::make($request->google_token),
                     'token' => md5(time()),
-                    'date' => date('Y-m-d')
+                    'date' => date('Y-m-d'),
+                    'ban' => 0
                 ]);
                 return Users::where('google_token', $request->google_token)->first();
             }
@@ -80,7 +82,8 @@ class AuthController extends Controller
                     'facebook_token' => $request->facebook_token,
                     'password' => Hash::make($request->facebook_token),
                     'token' => md5(time()),
-                    'date' => date('Y-m-d')
+                    'date' => date('Y-m-d'),
+                    'ban' => 0
                 ]);
                 return Users::where('facebook_token', $request->facebook_token)->first();
             }
@@ -93,5 +96,17 @@ class AuthController extends Controller
     public function deleteUser(Request $request)
     {
         return Users::where('id', $request->id)->delete();
+    }
+    public function banUser(Request $request)
+    {
+        return Users::where('id', $request->id)->update([
+            'ban' => 1
+        ]);
+    }
+    public function unBanUser(Request $request)
+    {
+        return Users::where('id', $request->id)->update([
+            'ban' => 0
+        ]);
     }
 }

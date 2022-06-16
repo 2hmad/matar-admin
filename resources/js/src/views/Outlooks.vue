@@ -166,6 +166,15 @@
                 </div>
             </template>
         </vue-good-table>
+        <br />
+        <b-button
+            variant="primary"
+            style="margin-right: auto; display: block"
+            @click="deleteExpired"
+        >
+            <feather-icon icon="TrashIcon" />
+            حذف المنشورات المنتهية
+        </b-button>
     </div>
 </template>
 
@@ -183,6 +192,7 @@ import {
     BDropdownItem,
 } from "bootstrap-vue";
 import { VueGoodTable } from "vue-good-table";
+import FeatherIcon from "../@core/components/feather-icon/FeatherIcon.vue";
 export default {
     components: {
         BButton,
@@ -195,6 +205,7 @@ export default {
         BDropdown,
         BDropdownItem,
         VueGoodTable,
+        FeatherIcon,
     },
     data() {
         return {
@@ -280,6 +291,29 @@ export default {
             var copyText = "https://rain-app.com/post/" + id;
             navigator.clipboard.writeText(copyText);
             alert("تم نسخ رابط المشاركة");
+        },
+        deleteExpired() {
+            var answer = window.confirm("هل انت متأكد من العملية ؟");
+            if (answer) {
+                axios
+                    .post(
+                        "/api/admin/delete-unused",
+                        {},
+                        {
+                            headers: {
+                                token: JSON.parse(
+                                    localStorage.getItem("MatarAdmin")
+                                ).token,
+                            },
+                        }
+                    )
+                    .then((result) => {
+                        alert("تم حذف التوقعات المنتهية"), location.reload();
+                    })
+                    .catch((err) => {
+                        alert("حدث خطأ ما");
+                    });
+            }
         },
     },
 };

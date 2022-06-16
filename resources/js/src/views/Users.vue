@@ -49,7 +49,7 @@
                                 class="text-body"
                             />
                         </template>
-                        <!-- <b-dropdown-item
+                        <b-dropdown-item
                             @click="blockAdmin(props.row.id)"
                             v-if="props.row.ban === 0"
                         >
@@ -62,7 +62,7 @@
                         >
                             <feather-icon icon="StopCircleIcon" class="mr-50" />
                             <span>رفع الحظر</span>
-                        </b-dropdown-item> -->
+                        </b-dropdown-item>
                         <b-dropdown-item @click="deleteAdmin(props.row.id)">
                             <feather-icon icon="TrashIcon" class="mr-50" />
                             <span>حذف</span>
@@ -233,7 +233,7 @@ export default {
             if (confirm) {
                 axios
                     .post(
-                        "/api/admin/block-admin",
+                        "/api/admin/block-user",
                         {
                             id: id,
                         },
@@ -259,7 +259,7 @@ export default {
             if (confirm) {
                 axios
                     .post(
-                        "/api/admin/unblock-admin",
+                        "/api/admin/unblock-user",
                         {
                             id: id,
                         },

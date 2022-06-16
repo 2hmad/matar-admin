@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\AdsController;
+use App\Http\Controllers\ApplyCouponController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\CouponsController;
@@ -47,6 +48,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
 
     Route::post('users', [AuthController::class, 'getAll']);
     Route::post('delete-user', [AuthController::class, 'deleteUser']);
+    Route::post('block-user', [AuthController::class, 'banUser']);
+    Route::post('unblock-user', [AuthController::class, 'unBanUser']);
 
     Route::post('add-outlook', [OutlooksController::class, 'add']);
     Route::post('edit-outlook', [OutlooksController::class, 'edit']);
@@ -104,6 +107,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
 
     Route::post('system-settings/satellite', [SystemSettingsController::class, 'satellite']);
     Route::post('system-settings/affiliate', [SystemSettingsController::class, 'affiliate']);
+
+    Route::post('delete-unused', [OutlooksController::class, 'delete_unused']);
 });
 
 Route::get('comments', [OutlooksController::class, 'fetchComments']);
@@ -139,6 +144,8 @@ Route::post('shared-posts', [ProfileController::class, 'shared_posts'])->middlew
 Route::post('send-reset-password', [ProfileController::class, 'send_reset_password']);
 Route::post('check-reset-code', [ProfileController::class, 'check_reset_password_code']);
 Route::post('reset-password', [ProfileController::class, 'reset_password']);
+
+Route::post('apply-coupon', [ApplyCouponController::class, 'apply']);
 
 Route::get('usersCount', function () {
     return Users::count();

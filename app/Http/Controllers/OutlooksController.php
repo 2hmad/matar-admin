@@ -10,6 +10,7 @@ use App\Models\OutlooksFiles;
 use App\Models\OutlookShares;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
@@ -113,5 +114,20 @@ class OutlooksController extends Controller
             'outlook_id' => $request->outlook_id,
             'user_id' => $user->id,
         ]);
+    }
+    public function delete_unused(Request $request)
+    {
+        $getExpired = Outlook::where('hide', '<=', date('Y-m-d H:i:s'))->get();
+        foreach ($getExpired as $outlook) {
+            OutlookLikes::where('outlook_id', $outlook->id)->delete();
+            OutlookShares::where('outlook_id', $outlook->id)->delete();
+            $get_files = OutlooksFiles::where('outlook_id', $outlook->id)->get();
+            foreach ($get_files as $file) {
+                File::delete(public_path() . '/storage/outlooks/' . $file->file);
+                OutlooksFiles::where('id', $file->id)->delete();
+            }
+            DB::table('outlooks_comments')->where('outlook_id', $outlook->id)->delete();
+            Outlook::where('id', $outlook->id)->delete();
+        }
     }
 }

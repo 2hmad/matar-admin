@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->text('token');
             $table->text('pic')->nullable();
             $table->text('date')->nullable();
+            $table->unsignedInteger('ban')->nullable();
         });
     }
 
