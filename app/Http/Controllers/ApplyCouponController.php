@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Coupons;
 use App\Models\MarketerDetails;
 use App\Models\Marketers;
+use App\Models\Subscriptions;
 use App\Models\UsedCoupons;
 use App\Models\Users;
 use Illuminate\Http\Request;
@@ -106,6 +107,24 @@ class ApplyCouponController extends Controller
                     'type' => 'subscribe',
                     'amount' => $marketer->sub_commission,
                     'date' => date('Y-m-d')
+                ]);
+                Subscriptions::create([
+                    'user_id' => $user->id,
+                    'amount' => $request->amount,
+                    'start_date' => $request->start_date,
+                    'expire_date' => $request->expire_date,
+                    'marketer_name' => $marketer->full_name,
+                    'pay_method' => $request->pay_method,
+                    'active' => 1
+                ]);
+            } else {
+                Subscriptions::create([
+                    'user_id' => $user->id,
+                    'amount' => $request->amount,
+                    'start_date' => $request->start_date,
+                    'expire_date' => $request->expire_date,
+                    'pay_method' => $request->pay_method,
+                    'active' => 1
                 ]);
             }
         }
