@@ -147,6 +147,8 @@ Route::post('reset-password', [ProfileController::class, 'reset_password']);
 
 Route::post('apply-coupon', [ApplyCouponController::class, 'apply']);
 
+Route::post('record-subscribe', [ApplyCouponController::class, 'recordSubscribe']);
+
 Route::get('usersCount', function () {
     return Users::count();
 });

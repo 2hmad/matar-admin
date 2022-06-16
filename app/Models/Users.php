@@ -18,7 +18,9 @@ class Users extends Model
         'google_token',
         'token',
         'pic',
-        'date'
+        'date',
+        'coupon',
+        'ban'
     ];
     protected $hidden = [];
     public $timestamps = false;

@@ -13,6 +13,9 @@ class MarketerDetails extends Model
     protected $fillable = [
         'marketer_id',
         'user_id',
+        'name',
+        'email',
+        'country',
         'type',
         'amount',
         'date',
