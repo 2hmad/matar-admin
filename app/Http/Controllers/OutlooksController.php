@@ -119,7 +119,7 @@ class OutlooksController extends Controller
     {
         $getExpired = Outlook::where('hide', '<=', date('Y-m-d H:i:s'))->get();
         foreach ($getExpired as $outlook) {
-            if ($outlook->hide !== null) {
+            if ($outlook->hide !== null || $outlook->hide !== '') {
                 OutlookLikes::where('outlook_id', $outlook->id)->delete();
                 OutlookShares::where('outlook_id', $outlook->id)->delete();
                 $get_files = OutlooksFiles::where('outlook_id', $outlook->id)->get();
