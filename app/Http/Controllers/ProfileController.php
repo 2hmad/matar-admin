@@ -8,6 +8,7 @@ use App\Models\Users;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class ProfileController extends Controller
@@ -76,6 +77,17 @@ class ProfileController extends Controller
                     'code' => Str::random(5),
                     'expire_time' => Carbon::parse(date('Y-m-d H:i'))->addMinutes(15)->format('Y-m-d H:i'),
                 ]);
+
+                // Mail::send('mail', ['id' => $getInvoice->id, 'user_id' => $getInvoice->user_id, 'invoice_id' => $getInvoice->invoice_id, 'bill_to' => $getInvoice->bill_to, 'payment' => $getInvoice->payment, 'order_date' => $getInvoice->order_date, 'description' => $getInvoice->description, 'publisher' => $getInvoice->publisher, 'price' => $getInvoice->price], function ($message) use ($getBillTo) {
+                //     $message->to($getBillTo)->subject('Yammluck Invoice');
+                // });
+                $getCode = ChangePassword::where('user', $request->email)->first();
+                if ($getCode !== null) {
+                    $u_email = $request->email;
+                    return Mail::send('mail', ['email' => $request->email, 'code' => $getCode->code, 'name' => $checkUser->name], function ($message) use ($u_email) {
+                        $message->to($u_email)->subject('اعادة تعيين كلمة المرور');
+                    });
+                }
             } else {
                 ChangePassword::where('user', $request->email)->update([
                     'user' => $request->email,
@@ -83,6 +95,13 @@ class ProfileController extends Controller
                     'code' => Str::random(5),
                     'expire_time' => Carbon::parse(date('Y-m-d H:i'))->addMinutes(15)->format('Y-m-d H:i'),
                 ]);
+                $getCode = ChangePassword::where('user', $request->email)->first();
+                if ($getCode !== null) {
+                    $u_email = $request->email;
+                    return Mail::send('mail', ['email' => $request->email, 'code' => $getCode->code, 'name' => $checkUser->name], function ($message) use ($u_email) {
+                        $message->to($u_email)->subject('اعادة تعيين كلمة المرور');
+                    });
+                }
             }
         } else {
             return response()->json(['alert' => 'المستخدم غير موجود'], 404);

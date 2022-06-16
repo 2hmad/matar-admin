@@ -13,6 +13,7 @@ class ChangePassword extends Model
         'user',
         'marketer',
         'token',
+        'code',
         'expire_time'
     ];
     protected $hidden = [];
