@@ -127,6 +127,15 @@ class ApplyCouponController extends Controller
                     'active' => 1
                 ]);
             }
+        } else {
+            Subscriptions::create([
+                'user_id' => $user->id,
+                'amount' => $request->amount,
+                'start_date' => $request->start_date,
+                'expire_date' => $request->expire_date,
+                'pay_method' => $request->pay_method,
+                'active' => 1
+            ]);
         }
     }
 }
