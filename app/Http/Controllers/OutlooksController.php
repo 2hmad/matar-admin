@@ -119,15 +119,17 @@ class OutlooksController extends Controller
     {
         $getExpired = Outlook::where('hide', '<=', date('Y-m-d H:i:s'))->get();
         foreach ($getExpired as $outlook) {
-            OutlookLikes::where('outlook_id', $outlook->id)->delete();
-            OutlookShares::where('outlook_id', $outlook->id)->delete();
-            $get_files = OutlooksFiles::where('outlook_id', $outlook->id)->get();
-            foreach ($get_files as $file) {
-                File::delete(public_path() . '/storage/outlooks/' . $file->file);
-                OutlooksFiles::where('id', $file->id)->delete();
+            if ($outlook->hide !== null) {
+                OutlookLikes::where('outlook_id', $outlook->id)->delete();
+                OutlookShares::where('outlook_id', $outlook->id)->delete();
+                $get_files = OutlooksFiles::where('outlook_id', $outlook->id)->get();
+                foreach ($get_files as $file) {
+                    File::delete(public_path() . '/storage/outlooks/' . $file->file);
+                    OutlooksFiles::where('id', $file->id)->delete();
+                }
+                DB::table('outlooks_comments')->where('outlook_id', $outlook->id)->delete();
+                Outlook::where('id', $outlook->id)->delete();
             }
-            DB::table('outlooks_comments')->where('outlook_id', $outlook->id)->delete();
-            Outlook::where('id', $outlook->id)->delete();
         }
     }
 }

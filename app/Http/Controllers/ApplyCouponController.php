@@ -66,7 +66,7 @@ class ApplyCouponController extends Controller
                                 'email' => $user->email,
                                 'country' => $user->country,
                                 'type' => 'register',
-                                'amount' => $details->amount + $checkMarketer->reg_commission,
+                                'amount' => $checkMarketer->reg_commission,
                                 'date' => date('Y-m-d')
                             ]);
                         } else {
@@ -77,7 +77,7 @@ class ApplyCouponController extends Controller
                                 'email' => $user->email,
                                 'country' => $user->country,
                                 'type' => 'register',
-                                'amount' => 0 + $checkMarketer->reg_commission,
+                                'amount' => $checkMarketer->reg_commission,
                                 'date' => date('Y-m-d')
                             ]);
                         }
@@ -87,6 +87,26 @@ class ApplyCouponController extends Controller
                 }
             } else {
                 return response()->json(['alert' => 'كوبون غير صالح'], 404);
+            }
+        }
+    }
+    public function recordSubscribe(Request $request)
+    {
+        $token = $request->header('Authorization');
+        $user = Users::where('token', $token)->first();
+        if ($user->coupon !== null) {
+            $marketer = Marketers::where('coupon', $user->coupon)->first();
+            if ($marketer !== null) {
+                MarketerDetails::create([
+                    'marketer_id' => $marketer->id,
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'country' => $user->country,
+                    'type' => 'subscribe',
+                    'amount' => $marketer->sub_commission,
+                    'date' => date('Y-m-d')
+                ]);
             }
         }
     }
