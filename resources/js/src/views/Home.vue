@@ -97,7 +97,7 @@
                         class="card-body d-flex justify-content-between align-items-center"
                     >
                         <div class="truncate">
-                            <h2 class="mb-25 font-weight-bolder">20</h2>
+                            <h2 class="mb-25 font-weight-bolder">0</h2>
                             <span>المتواجدون حالياً</span>
                         </div>
                         <span
@@ -112,6 +112,55 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg">
+                <h4>الصفحات الاكثر زيارة</h4>
+                <vue-good-table
+                    :columns="pagesVisitColumns"
+                    :rows="pagesVisitRows"
+                >
+                    <div slot="emptystate">لا توجد بيانات</div>
+                    <template slot="table-row" slot-scope="props">
+                        <span
+                            v-if="props.column.field === 'fullName'"
+                            class="text-nowrap"
+                        >
+                            <span class="text-nowrap">{{
+                                props.row.fullName
+                            }}</span>
+                        </span>
+                        <!-- Column: Common -->
+                        <span v-else>
+                            {{ props.formattedRow[props.column.field] }}
+                        </span>
+                    </template>
+                </vue-good-table>
+            </div>
+            <div class="col-lg">
+                <h4>عدد الزوار</h4>
+                <vue-good-table
+                    :columns="visitCountColumns"
+                    :rows="visitCountRows"
+                >
+                    <div slot="emptystate">لا توجد بيانات</div>
+                    <template slot="table-row" slot-scope="props">
+                        <span
+                            v-if="props.column.field === 'fullName'"
+                            class="text-nowrap"
+                        >
+                            <span class="text-nowrap">{{
+                                props.row.fullName
+                            }}</span>
+                        </span>
+                        <!-- Column: Common -->
+                        <span v-else>
+                            {{ props.formattedRow[props.column.field] }}
+                        </span>
+                    </template>
+                </vue-good-table>
+            </div>
+        </div>
+        <br /><br />
         <h4>اكثر المنشورات اعجاباً</h4>
         <vue-good-table
             :columns="columns"
@@ -194,6 +243,33 @@ export default {
                 },
             ],
             rows: [],
+            pagesVisitColumns: [
+                {
+                    label: "الصفحة",
+                    field: "title",
+                    sortable: false,
+                },
+                {
+                    label: "عدد الزيارات",
+                    field: "country",
+                    sortable: false,
+                },
+            ],
+            pagesVisitRows: [],
+            visitCountColumns: [
+                {
+                    label: "الدولة",
+                    field: "title",
+                    sortable: false,
+                },
+                {
+                    label: "عدد الزوار",
+                    field: "country",
+                    sortable: false,
+                },
+            ],
+            visitCountRows: [],
+
             searchTerm: "",
             users: null,
             subsCount: null,
