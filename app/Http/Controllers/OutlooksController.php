@@ -110,14 +110,18 @@ class OutlooksController extends Controller
     public function like(Request $request)
     {
         $user = Users::where('token', $request->header('Authorization'))->first();
-        OutlookLikes::updateOrCreate([
-            'outlook_id' => $request->outlook_id,
-            'user_id' => $user->id,
-        ]);
         $getOutlook = Outlook::where('outlook_id', $request->outlook_id)->first();
-        Outlook::where('outlook_id', $request->outlook_id)->update([
-            'likes' => $getOutlook->likes + 1
-        ]);
+        if ($getOutlook !== null) {
+            OutlookLikes::updateOrCreate([
+                'outlook_id' => $request->outlook_id,
+                'user_id' => $user->id,
+            ]);
+            Outlook::where('outlook_id', $request->outlook_id)->update([
+                'likes' => $getOutlook->likes + 1
+            ]);
+        } else {
+            return response()->json([], 404);
+        }
     }
     public function delete_unused(Request $request)
     {
