@@ -13,7 +13,8 @@ class Comments extends Model
         'outlook_id',
         'user_id',
         'comment',
-        'reply'
+        'reply',
+        'date'
     ];
     protected $hidden = [];
     public $timestamps = false;
