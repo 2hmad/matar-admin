@@ -114,6 +114,10 @@ class OutlooksController extends Controller
             'outlook_id' => $request->outlook_id,
             'user_id' => $user->id,
         ]);
+        $getOutlook = Outlook::where('outlook_id', $request->outlook_id)->first();
+        Outlook::where('outlook_id', $request->outlook_id)->update([
+            'likes' => $getOutlook->likes + 1
+        ]);
     }
     public function delete_unused(Request $request)
     {
