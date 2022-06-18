@@ -112,15 +112,20 @@ class OutlooksController extends Controller
         $user = Users::where('token', $request->header('Authorization'))->first();
         $getOutlook = Outlook::where('id', $request->outlook_id)->first();
         if ($getOutlook !== null) {
-            OutlookLikes::updateOrCreate([
-                'outlook_id' => $request->outlook_id,
-                'user_id' => $user->id,
-            ]);
-            Outlook::where('id', $request->outlook_id)->update([
-                'likes' => $getOutlook->likes + 1
-            ]);
+            $checkLike = OutlookLikes::where('outlook_id', $request->outlook_id)->where('user_id', $user->id)->first();
+            if ($checkLike == null) {
+                OutlookLikes::updateOrCreate([
+                    'outlook_id' => $request->outlook_id,
+                    'user_id' => $user->id,
+                ]);
+                Outlook::where('id', $request->outlook_id)->update([
+                    'likes' => $getOutlook->likes + 1
+                ]);
+            } else {
+                return response()->json(["alert" => "تم الاعجاب بالمنشور من قبل"], 404);
+            }
         } else {
-            return response()->json([], 404);
+            return response()->json(["alert" => "المنشور غير موجود"], 404);
         }
     }
     public function delete_unused(Request $request)
