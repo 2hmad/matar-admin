@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WeatherShots;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class WeatherShotsController extends Controller
 {
@@ -49,5 +50,15 @@ class WeatherShotsController extends Controller
             'schedule' => $request->publishDate,
             'hide' => $request->hideDate,
         ]);
+    }
+    public function delete_unused(Request $request)
+    {
+        $getExpired = WeatherShots::where('hide', '<=', date('Y-m-d H:i:s'))->get();
+        foreach ($getExpired as $shot) {
+            if ($shot->hide !== null && $shot->hide !== '') {
+                File::delete(public_path() . '/storage/weather-shots/' . $shot->media);
+                WeatherShots::where('id', $shot->id)->delete();
+            }
+        }
     }
 }

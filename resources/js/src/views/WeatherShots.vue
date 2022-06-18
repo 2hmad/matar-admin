@@ -237,6 +237,15 @@
                 </div>
             </template>
         </vue-good-table>
+        <br />
+        <b-button
+            variant="primary"
+            style="margin-right: auto; display: block"
+            @click="deleteExpired"
+        >
+            <feather-icon icon="TrashIcon" />
+            حذف المنشورات المنتهية
+        </b-button>
     </div>
 </template>
 
@@ -408,6 +417,30 @@ export default {
             var copyText = "https://rain-app.com/shot/" + id;
             navigator.clipboard.writeText(copyText);
             alert("تم نسخ رابط المشاركة");
+        },
+        deleteExpired() {
+            var answer = window.confirm("هل انت متأكد من العملية ؟");
+            if (answer) {
+                axios
+                    .post(
+                        "/api/admin/delete-unused-shots",
+                        {},
+                        {
+                            headers: {
+                                token: JSON.parse(
+                                    localStorage.getItem("MatarAdmin")
+                                ).token,
+                            },
+                        }
+                    )
+                    .then((result) => {
+                        alert("تم حذف صور / مقاطع الفيديو المنتهية"),
+                            location.reload();
+                    })
+                    .catch((err) => {
+                        alert("حدث خطأ ما");
+                    });
+            }
         },
     },
 };

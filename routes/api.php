@@ -109,6 +109,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
     Route::post('system-settings/affiliate', [SystemSettingsController::class, 'affiliate']);
 
     Route::post('delete-unused', [OutlooksController::class, 'delete_unused']);
+    Route::post('delete-unused-shots', [WeatherShotsController::class, 'delete_unused']);
 });
 
 Route::get('comments', [OutlooksController::class, 'fetchComments']);

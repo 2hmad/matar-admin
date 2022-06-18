@@ -107,6 +107,7 @@ export default {
         async logout() {
             await this.$store.dispatch("LogOut");
             this.$router.push("/login");
+            localStorage.removeItem("MatarAdmin");
         },
     },
 };
