@@ -20,24 +20,23 @@ class ProfileController extends Controller
                 'pic' => 'required|mimes:jpeg,png,jpg'
             ]);
             if ($validate) {
-                $dataDecode = json_decode($request->data, true);
                 $filename = $request->header('Authorization') . '.' . $request->pic->getClientOriginalExtension();
                 $file_path = $request->file('pic')->storeAs('/users/', $filename, 'public');
-                if (!$dataDecode['password']) {
+                if (!$request->password) {
                     return Users::where('token', $request->header('Authorization'))->update([
-                        'name' => $dataDecode['name'],
-                        'email' => $dataDecode['email'],
-                        'country' => $dataDecode['country'],
-                        'phone' => $dataDecode['phone'],
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'country' => $request->country,
+                        'phone' => $request->phone,
                         'pic' => $filename
                     ]);
                 } else {
                     return Users::where('token', $request->header('Authorization'))->update([
-                        'name' => $dataDecode['name'],
-                        'email' => $dataDecode['email'],
-                        'country' => $dataDecode['country'],
-                        'phone' => $dataDecode['phone'],
-                        'password' => Hash::make($dataDecode['password']),
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'country' => $request->country,
+                        'phone' => $request->phone,
+                        'password' => Hash::make($request->password),
                         'pic' => $filename
                     ]);
                 }
