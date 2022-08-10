@@ -140,6 +140,7 @@ Route::get('ads', [AdsController::class, 'get']);
 Route::post('increase-views', [AdsController::class, 'views']);
 Route::post('increase-clicks', [AdsController::class, 'clicks']);
 
+Route::get('profile', [ProfileController::class, 'get'])->middleware('userToken');
 Route::post('update-profile', [ProfileController::class, 'update'])->middleware('userToken');
 Route::post('shared-posts', [ProfileController::class, 'shared_posts'])->middleware('userToken');
 Route::post('send-reset-password', [ProfileController::class, 'send_reset_password']);

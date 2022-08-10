@@ -13,6 +13,16 @@ use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
+    public function get(Request $request)
+    {
+        $token = $request->header('Authorization');
+        $user = Users::where('token', $token)->first();
+        if (!$user) {
+            return response()->json(['alert' => 'المستخدم غير موجود'], 404);
+        } else {
+            return response()->json($user, 200);
+        }
+    }
     public function update(Request $request)
     {
         if ($request->file('pic')) {
