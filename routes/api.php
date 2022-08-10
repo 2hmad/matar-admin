@@ -114,6 +114,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
 
 Route::get('comments', [OutlooksController::class, 'fetchComments']);
 Route::post('send-comment', [OutlooksController::class, 'sendComment']);
+Route::post('send-reply', [OutlooksController::class, 'sendReply']);
 Route::post('submit-like', [OutlooksController::class, 'like']);
 Route::get('outlooks', [OutlooksController::class, 'get']);
 Route::get('outlooks/{country}', [OutlooksController::class, 'getByCountry']);

@@ -107,6 +107,16 @@ class OutlooksController extends Controller
             'date' => date('Y-m-d')
         ]);
     }
+    public function sendReply(Request $request)
+    {
+        $user = Users::where('token', $request->header('Authorization'))->first();
+        Comments::where([
+            ['id', $request->comment_id],
+            ['outlook_id', $request->outlook_id]
+        ])->update([
+            'reply' => $request->reply
+        ]);
+    }
     public function like(Request $request)
     {
         $user = Users::where('token', $request->header('Authorization'))->first();
