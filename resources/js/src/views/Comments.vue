@@ -17,6 +17,17 @@
                     : <span>{{ comment.outlook.country }}</span> | تاريخ النشر :
                     <span>{{ comment.date }}</span>
                 </p>
+                <p
+                    style="
+                        display: inline-block;
+                        white-space: nowrap;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis;
+                        max-width: 500px;
+                    "
+                >
+                    {{ comment.outlook.details }}
+                </p>
                 <b-card-text>
                     <b style="font-weight: bold">التعليق : </b>
                     <p>{{ comment.comment }}</p>
