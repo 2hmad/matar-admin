@@ -7,8 +7,19 @@
                         :src="`/storage/users/${comment.user.pic}`"
                         blank-color="#ccc"
                         width="64"
+                        height="64"
                         alt="placeholder"
                         rounded="circle"
+                        v-if="comment.user.pic !== null"
+                    />
+                    <b-img
+                        :src="`/storage/users/default.jpg`"
+                        blank-color="#ccc"
+                        width="64"
+                        height="64"
+                        alt="placeholder"
+                        rounded="circle"
+                        v-else
                     />
                 </template>
                 <h4 class="media-heading">{{ comment.user.name }}</h4>
