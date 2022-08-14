@@ -32,6 +32,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'country' => $request->country,
                 'token' => md5(time()),
+                'role' => 'user',
                 'date' => date('Y-m-d'),
                 'ban' => 0
             ]);

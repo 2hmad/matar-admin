@@ -17,6 +17,7 @@ class Users extends Model
         'facebook_token',
         'google_token',
         'token',
+        'role',
         'pic',
         'date',
         'coupon',

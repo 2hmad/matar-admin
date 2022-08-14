@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->text('facebook_token')->nullable();
             $table->text('google_token')->nullable();
             $table->text('token');
+            $table->text('role')->nullable();
             $table->text('pic')->nullable();
             $table->text('date')->nullable();
             $table->text('coupon')->nullable();
