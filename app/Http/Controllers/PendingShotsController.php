@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PendingShots;
+use App\Models\Users;
 use App\Models\WeatherShots;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -57,5 +58,16 @@ class PendingShotsController extends Controller
         $getShot = PendingShots::where('id', $request->post_id)->first();
         File::delete(public_path() . '/storage/weather-shots/' . $getShot->media);
         PendingShots::where('id', $request->post_id)->delete();
+    }
+    public function share(Request $request)
+    {
+        $getOutlook = WeatherShots::where('id', $request->shot_id)->first();
+        if ($getOutlook !== null) {
+            WeatherShots::where('id', $request->shot_id)->update([
+                'shares' => $getOutlook->shares + 1
+            ]);
+        } else {
+            return response()->json(["alert" => "المنشور غير موجود"], 404);
+        }
     }
 }

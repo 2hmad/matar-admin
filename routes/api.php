@@ -119,11 +119,13 @@ Route::post('submit-like', [OutlooksController::class, 'like']);
 Route::get('outlooks', [OutlooksController::class, 'get']);
 Route::get('outlooks/{country}', [OutlooksController::class, 'getByCountry']);
 Route::get('outlook/{id}', [OutlooksController::class, 'fetch']);
+Route::get('outlook/share', [OutlooksController::class, 'share']);
 
 Route::get('weatherShots', [WeatherShotsController::class, 'get']);
 Route::get('weather-shot/{id}', [WeatherShotsController::class, 'getByID']);
 Route::get('pending-shots', [PendingShotsController::class, 'get']);
 Route::post('send-pending-shot', [PendingShotsController::class, 'send'])->middleware('userToken');
+Route::post('weather-shot/share', [PendingShotsController::class, 'share']);
 
 Route::get('sattelite-link', [SystemSettingsController::class, 'getSatellite']);
 

@@ -155,4 +155,20 @@ class OutlooksController extends Controller
             }
         }
     }
+    public function share(Request $request)
+    {
+        $user = Users::where('token', $request->header('Authorization'))->first();
+        $getOutlook = Outlook::where('id', $request->outlook_id)->first();
+        if ($getOutlook !== null) {
+            OutlookShares::create([
+                'outlook_id' => $request->outlook_id,
+                'user_id' => $user->id,
+            ]);
+            Outlook::where('id', $request->outlook_id)->update([
+                'shares' => $getOutlook->shares + 1
+            ]);
+        } else {
+            return response()->json(["alert" => "المنشور غير موجود"], 404);
+        }
+    }
 }
