@@ -23,6 +23,8 @@ class Users extends Model
         'coupon',
         'ban'
     ];
-    protected $hidden = [];
+    protected $hidden = [
+        'password',
+    ];
     public $timestamps = false;
 }

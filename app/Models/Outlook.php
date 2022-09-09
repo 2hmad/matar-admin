@@ -25,7 +25,7 @@ class Outlook extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comments::class, 'outlook_id', 'id');
+        return $this->hasMany(Comments::class, 'outlook_id', 'id')->with('user');
     }
     public function files()
     {
