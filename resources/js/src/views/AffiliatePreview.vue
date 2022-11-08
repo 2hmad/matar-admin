@@ -323,7 +323,7 @@
                 </span>
 
                 <span v-else-if="props.column.field === 'method'">
-                    <span v-if="props.row.method === 'register'"> تسجيل </span>
+                    <span v-if="props.row.method == 'register'"> تسجيل </span>
                     <span v-else> الاشتراك </span>
                 </span>
 
@@ -489,7 +489,7 @@ export default {
                 },
                 {
                     label: "طريقة التحصيل",
-                    field: "method",
+                    field: "type",
                     sortable: false,
                 },
                 {

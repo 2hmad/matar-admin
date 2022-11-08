@@ -85,6 +85,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
     Route::post('block-marketer', [MarketersController::class, 'block']);
     Route::post('unblock-marketer', [MarketersController::class, 'unblock']);
     Route::post('withdraw-marketer', [MarketersController::class, 'withdraw_methods']);
+    Route::post('withdraw', [MarketersController::class, 'withdraw']);
 
     Route::post('tickets', [SupportTicketsController::class, 'get']);
     Route::post('close-ticket', [SupportTicketsController::class, 'close']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comments;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -96,7 +97,17 @@ class AuthController extends Controller
     }
     public function deleteUser(Request $request)
     {
-        return Users::where('id', $request->id)->delete();
+        $user = Users::where('id', $request->id)->first();
+        if ($user !== null) {
+            // delete comments of user and likes
+            $comments = Comments::where('user_id', $request->id)->get();
+            foreach ($comments as $comment) {
+                $comment->delete();
+            }
+            $user->delete();
+        } else {
+            return response()->json(['alert' => 'المستخدم غير موجود'], 404);
+        }
     }
     public function banUser(Request $request)
     {

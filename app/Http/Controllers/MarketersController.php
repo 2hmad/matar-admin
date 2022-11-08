@@ -91,6 +91,6 @@ class MarketersController extends Controller
     }
     public function withdraw(Request $request)
     {
-        MarketerDetails::where('marketer_id', $request->id)->delete();
+        return MarketerDetails::where('marketer_id', $request->id)->delete();
     }
 }
