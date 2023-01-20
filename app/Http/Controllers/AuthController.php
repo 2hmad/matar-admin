@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $checkUser = Users::where('email', $request->email)->first();
+        $checkUser = Users::where('email', $request->email)->with('subscription')->first();
         if ($checkUser !== null) {
             if (Hash::check($request->password, $checkUser->password)) {
                 return $checkUser;

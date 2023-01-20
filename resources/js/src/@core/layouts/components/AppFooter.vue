@@ -3,9 +3,7 @@
         <span class="float-md-left d-block d-md-inline-block mt-25">
             <span class="d-none d-sm-inline-block">جميع الحقوق محفوظة</span>
             © {{ new Date().getFullYear() }}
-            <b-link class="ml-25" href="https://digitwires.com" target="_blank">
-                شركة ديجيت وايرز
-            </b-link>
+            ادارة تطبيق مطر
         </span>
     </p>
 </template>

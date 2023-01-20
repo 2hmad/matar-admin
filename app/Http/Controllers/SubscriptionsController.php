@@ -11,4 +11,8 @@ class SubscriptionsController extends Controller
     {
         return Subscriptions::orderBy('id', 'DESC')->with('user')->get();
     }
+    public function delete($id)
+    {
+        return Subscriptions::where('id', $id)->delete();
+    }
 }

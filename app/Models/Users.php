@@ -27,4 +27,9 @@ class Users extends Model
         'password',
     ];
     public $timestamps = false;
+
+    public function subscription()
+    {
+        return $this->hasMany(Subscriptions::class, 'user_id', 'id');
+    }
 }

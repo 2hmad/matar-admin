@@ -414,7 +414,7 @@ export default {
                 });
         },
         share(id) {
-            var copyText = "https://rain-app.com/shot/" + id;
+            var copyText = "https://rain-app.com/outlook/" + id;
             navigator.clipboard.writeText(copyText);
             alert("تم نسخ رابط المشاركة");
         },

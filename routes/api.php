@@ -94,6 +94,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminAuth'], function () {
     Route::post('delete-ad', [AdsController::class, 'delete']);
 
     Route::post('subscriptions', [SubscriptionsController::class, 'get']);
+    Route::delete('subscription/{id}', [SubscriptionsController::class, 'delete']);
 
     Route::post('admins', [AdminAuthController::class, 'admins']);
     Route::post('add-admin', [AdminAuthController::class, 'addAdmin']);
