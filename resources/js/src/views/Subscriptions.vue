@@ -201,7 +201,7 @@
                                 class="text-body"
                             />
                         </template>
-                        <b-dropdown-item @click="cancel(props.row.id)">
+                        <b-dropdown-item>
                             <feather-icon icon="XOctagonIcon" class="mr-50" />
                             <span>الغاء الاشتراك</span>
                         </b-dropdown-item>
@@ -350,22 +350,22 @@ export default {
         };
     },
     methods: {
-        cancel(id) {
-            axios
-                .delete(`/api/admin/subscriptions/${id}`, {
-                    headers: {
-                        token: JSON.parse(localStorage.getItem("MatarAdmin"))
-                            .token,
-                    },
-                })
-                .then((res) => {
-                    alert("تم الغاء الاشتراك بنجاح");
-                    this.rows = this.rows.filter((row) => row.id != id);
-                })
-                .catch((err) => {
-                    alert("حدث خطأ ما");
-                });
-        },
+        // cancel(id) {
+        //     axios
+        //         .delete(`/api/admin/subscriptions/${id}`, {
+        //             headers: {
+        //                 token: JSON.parse(localStorage.getItem("MatarAdmin"))
+        //                     .token,
+        //             },
+        //         })
+        //         .then((res) => {
+        //             alert("تم الغاء الاشتراك بنجاح");
+        //             this.rows = this.rows.filter((row) => row.id != id);
+        //         })
+        //         .catch((err) => {
+        //             alert("حدث خطأ ما");
+        //         });
+        // },
         currentDate() {
             return moment().format("YYYY-MM-DD");
         },
