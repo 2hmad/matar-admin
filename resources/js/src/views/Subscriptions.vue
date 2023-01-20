@@ -354,7 +354,7 @@ export default {
     methods: {
         cancel(id) {
             axios
-                .delete(`/api/admin/subscriptions/${id}`, {
+                .delete(`/api/admin/subscription/${id}`, {
                     headers: {
                         token: JSON.parse(localStorage.getItem("MatarAdmin"))
                             .token,
