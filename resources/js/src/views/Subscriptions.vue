@@ -203,7 +203,9 @@
                         </template>
                         <b-dropdown-item>
                             <feather-icon icon="XOctagonIcon" class="mr-50" />
-                            <span>الغاء الاشتراك</span>
+                            <span @click="cancel(props.row.id)"
+                                >الغاء الاشتراك</span
+                            >
                         </b-dropdown-item>
                     </b-dropdown>
                 </span>
