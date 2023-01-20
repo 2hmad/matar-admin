@@ -42,7 +42,7 @@ class ApplyCouponController extends Controller
         } else {
             $checkMarketer = Marketers::where('coupon', $request->coupon)->first();
             if ($checkMarketer !== null) {
-                if ($checkMarketer->coupon_expire == null || $checkMarketer->coupon_expire > date('Y-m-d')) {
+                if ($checkMarketer->coupon_expire == null || $checkMarketer->coupon_expire >= date('Y-m-d')) {
                     $user = Users::where('token', $request->header('Authorization'))->first();
                     $checkUsed = UsedCoupons::where([
                         ['c_id', '=', $checkMarketer->id], ['u_id', '=', $user->id], ['device_id', '=', $request->device_id]

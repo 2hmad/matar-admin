@@ -321,7 +321,6 @@
                 >
                     <span class="text-nowrap">{{ props.row.fullName }}</span>
                 </span>
-
                 <span v-else-if="props.column.field === 'method'">
                     <span v-if="props.row.method == 'register'"> تسجيل </span>
                     <span v-else> الاشتراك </span>
@@ -604,7 +603,7 @@ export default {
             if (confirm) {
                 axios
                     .post(
-                        "/api/admin/withdraw-marketer",
+                        "/api/admin/withdraw",
                         { id: id },
                         {
                             headers: {

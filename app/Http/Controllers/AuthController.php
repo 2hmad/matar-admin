@@ -99,7 +99,6 @@ class AuthController extends Controller
     {
         $user = Users::where('id', $request->id)->first();
         if ($user !== null) {
-            // delete comments of user and likes
             $comments = Comments::where('user_id', $request->id)->get();
             foreach ($comments as $comment) {
                 $comment->delete();

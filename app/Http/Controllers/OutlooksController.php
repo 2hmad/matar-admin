@@ -31,7 +31,7 @@ class OutlooksController extends Controller
     }
     public function fetch($id)
     {
-        return Outlook::where('id', $id)->first();
+        return Outlook::where('id', $id)->with('files', 'comments')->first();
     }
     public function add(Request $request)
     {
